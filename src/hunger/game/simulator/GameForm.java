@@ -1,24 +1,77 @@
 package hunger.game.simulator;
 
 import java.util.Random;
+import javax.swing.ImageIcon;
 
 public class GameForm extends javax.swing.JFrame {
 
     private Participant[] PPcharacters; // Picked participants
+    //private Participant[] AliveCharacters; // alive participants
 
+    private String[] eventsSingle;
+    private boolean[] eventsSDeath;
     private static Random rnd = new Random();
 
     GameForm(Participant[] PPcharacters) {
         initComponents();
+        ImageIcon l = new ImageIcon("logo.png");
+        jLabel1.setIcon(l);
         this.PPcharacters = PPcharacters;
+        eventsSingle = new String[]{"fell from a tree and died", "tried to make a fire but failed", "found a bow but instantly broke it", "explores the arena."};
+        eventsSDeath = new boolean[]{true, false, false, false};
+
+        jLabel5.setText(handleEvent());
+
+        jLabel7.setText(handleEvent());
+
+        jLabel9.setText(handleEvent());
+        jLabel11.setText(handleEvent());
+        jLabel13.setText(handleEvent());
+        jLabel15.setText(handleEvent());
+        jLabel17.setText(handleEvent());
+        jLabel19.setText(handleEvent());
     }
-//
-//    private String Percent(int Percent) {
-//
-//        int SPercent = rnd.nextInt(100);
-//       
-//
+
+    private String handleEvent() {
+        int currentEvent = rndevent();
+        boolean isDying = eventsSDeath[currentEvent];
+        int currentGuy = rndguy();
+        if (isDying) {
+            PPcharacters[currentGuy].setStatus(false);
+        }
+        return PPcharacters[currentGuy].getName() + " " + eventsSingle[currentEvent];
+    }
+
+    private int rndevent() {
+        int num = rnd.nextInt(eventsSingle.length);
+
+        return num;
+
+    }
+
+    private int rndguy() {
+        int guynum = rnd.nextInt(12);
+        if (PPcharacters[guynum].isStatus()) {
+            return guynum;
+
+        } else {
+            return rndguy();
+        }
+    }
+
+    // Building a new list of all alive characters from all the participants
+    // Identical to:
+    // Go over all the participants and build a new small list which contains only the alive ones
+//    private void BuildAliveCharacters() {
+//        for (int i = 0; i < 12; i++) {
+//            PPcharacters[i] = new Participant(AliveCharacters[i].getName());
+//        }
 //    }
+    private boolean Percent(int Percent) {
+        int SPercent = rnd.nextInt(100);
+        return SPercent < Percent;
+
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -71,7 +124,7 @@ public class GameForm extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(670, Short.MAX_VALUE))
+                .addContainerGap(611, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,9 +138,9 @@ public class GameForm extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,6 +151,11 @@ public class GameForm extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
         jButton2.setText("Progress");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Status");
 
@@ -210,6 +268,10 @@ public class GameForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
