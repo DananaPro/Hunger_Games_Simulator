@@ -4,24 +4,21 @@ import java.util.Random;
 
 public class GameForm extends javax.swing.JFrame {
 
+    private Participant[] PPcharacters; // Picked participants
+
     private static Random rnd = new Random();
 
-    public GameForm() {
-        initComponents();
-    }
-
     GameForm(Participant[] PPcharacters) {
-
+        initComponents();
+        this.PPcharacters = PPcharacters;
     }
-
-    private String Percent(int Percent) {
-
-        int SPercent = rnd.nextInt(100);
-        if (SPercent <= 10) {
-            return "X is on fire";
-        }
-
-    }
+//
+//    private String Percent(int Percent) {
+//
+//        int SPercent = rnd.nextInt(100);
+//       
+//
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
