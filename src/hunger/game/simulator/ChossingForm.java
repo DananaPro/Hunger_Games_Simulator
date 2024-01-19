@@ -8,10 +8,9 @@ import javax.swing.JFrame;
 
 public class ChossingForm extends javax.swing.JFrame {
 
-    private String[] Tcharacters;
-    private JCheckBox[] TCHEcharacters;
-    private JCheckBox[] Pcharacters;
-    private Participant[] PPcharacters;
+    private String[] Tcharacters; // Names of all characters
+    private JCheckBox[] TCHEcharacters; // Checkboxes with all characters
+    private Participant[] PPcharacters; // Picked participants
 
     public ChossingForm() {
         initComponents();
@@ -22,9 +21,9 @@ public class ChossingForm extends javax.swing.JFrame {
             "My Little Pony", "mr incredible", "Charizard", "Pinocchio", "spongebob",
             "Saitama", "nikola tesla", "Mister Bean", "Scooby Doo", "Hide the pain guy",
             "Stewie Griffin", "Bernie Sanders", "Queen Elizabeth II", "Albert Einstein",
-            "Technoblade", "Bart Simsoms", "Frankenstein", "Shrek", "mike tyson", "Harry Potter",
+            "Technoblade", "Bart Simpson", "Frankenstein", "Shrek", "mike tyson", "Harry Potter",
             "Golem", "Donkey Kong", "Pepe the Frog", "jesus christ", "Donald Trump",
-            "king from clash royale", "Freddie Mercury", "Borat Sagdiv"};
+            "king from clash royale", "Freddie Mercury", "Borat Sagdiyev"};
         TCHEcharacters = new JCheckBox[35];
         for (int i = 0; i < 35; i++) {
             TCHEcharacters[i] = new JCheckBox(Tcharacters[i]);
@@ -32,11 +31,6 @@ public class ChossingForm extends javax.swing.JFrame {
         }
         PPcharacters = new Participant[12];
 
-        Pcharacters = new JCheckBox[12];
-        for (int i = 0; i < 12; i++) {
-            PPcharacters[i] = new Participant(Pcharacters[i].getText(), null);
-
-        }
         ImageIcon l = new ImageIcon("logo.png");
         jLabel1.setIcon(l);
         jLabel5.setVisible(false);
@@ -45,19 +39,23 @@ public class ChossingForm extends javax.swing.JFrame {
     private void StartChecking() {
         int selectedIndex = 0;
 
+        //for (int i=0; i<TCHEcharacters.length;i++){
+        //JCheckBox TCHEcharacter = TCHEcharacters[i];
+        //identical to:
         for (JCheckBox TCHEcharacter : TCHEcharacters) {
             if (TCHEcharacter.isSelected()) {
 
-                Pcharacters[selectedIndex++] = TCHEcharacter;
-                if (selectedIndex >= 12) {
-                    break;
-                }
+                //Pcharacters[selectedIndex++] = TCHEcharacter;
+                //identical to:
+                //Pcharacters[selectedIndex] = TCHEcharacter;
+                selectedIndex++;
+
             }
         }
         if (selectedIndex == 12) {
             startGame();
         } else {
-            jLabel5.setText("Please select exactly 12 characters.");
+            jLabel5.setText("Please select exactly 12 characters. You pressed " + selectedIndex + " times");
             jLabel5.setVisible(true);
 
         }
@@ -68,6 +66,22 @@ public class ChossingForm extends javax.swing.JFrame {
     //            jLabel5.setVisible(true);
     private void startGame() {
         setVisible(false);
+
+        int selectedIndex = 0;
+        for (JCheckBox TCHEcharacter : TCHEcharacters) {
+            if (TCHEcharacter.isSelected()) {
+
+                //PPcharacters[selectedIndex++]  = new Participant(TCHEcharacter.getText());
+                //identical to:
+                PPcharacters[selectedIndex] = new Participant(TCHEcharacter.getText());
+                selectedIndex++;
+
+            }
+        }
+
+        //for (int i = 0; i < 12; i++) {
+        //    PPcharacters[i] = new Participant(Pcharacters[i].getText());
+        //}
         GameForm gf = new GameForm(PPcharacters);
         gf.setVisible(true);
     }
