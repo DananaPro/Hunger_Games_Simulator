@@ -17,8 +17,8 @@ public class GameForm extends javax.swing.JFrame {
         ImageIcon l = new ImageIcon("logo.png");
         jLabel1.setIcon(l);
         this.PPcharacters = PPcharacters;
-        eventsSingle = new String[]{"fell from a tree and died", "tried to make a fire but failed", "found a bow but instantly broke it", "explores the arena."};
-        eventsSDeath = new boolean[]{true, false, false, false};
+        eventsSingle = new String[]{"fell from a tree and died", "tried to make a fire but failed", "found a bow but instantly broke it", "explores the arena.", "questions her sanity."};
+        eventsSDeath = new boolean[]{true, false, false, false, false};
 
         jLabel5.setText(handleEvent());
 
@@ -57,6 +57,21 @@ public class GameForm extends javax.swing.JFrame {
         } else {
             return rndguy();
         }
+    }
+    private void setText(){
+        eventsSingle = new String[]{"fell from a tree and died", "tried to make a fire but failed", "found a bow but instantly broke it", "explores the arena.", "questions her sanity."};
+        eventsSDeath = new boolean[]{true, false, false, false, false};
+
+        jLabel5.setText(handleEvent());
+
+        jLabel7.setText(handleEvent());
+
+        jLabel9.setText(handleEvent());
+        jLabel11.setText(handleEvent());
+        jLabel13.setText(handleEvent());
+        jLabel15.setText(handleEvent());
+        jLabel17.setText(handleEvent());
+        jLabel19.setText(handleEvent());
     }
 
     // Building a new list of all alive characters from all the participants
@@ -270,7 +285,7 @@ public class GameForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        setText();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
