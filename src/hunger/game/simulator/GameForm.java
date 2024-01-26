@@ -37,7 +37,7 @@ public class GameForm extends javax.swing.JFrame {
         eventsM1ultiplayer = new String[]{"attacks ",
             "and ", "destroys "};
         eventsM2ultiplayer = new String[]{
-            "but managed to escape", "Going to look for enemies", "'s while he sleeps"
+            "but managed to escape", "Going to look for enemies", "'s equipment while he sleeps"
         };
         eventsMultiplayer = new String[]{
             " killed ", " stabed "
@@ -60,21 +60,40 @@ public class GameForm extends javax.swing.JFrame {
     }
 
     private int rndtypevent() {
-        int num = rnd.nextInt(eventsSingle.length);
+        int num = rnd.nextInt(3);
 
         return num;
     }
 
     private String handleEvent() {
+        String Result;
+
+        int currenttypeEvent = rndtypevent();
+        if (currenttypeEvent == 1) {
+            Result = SingleEventHandler();
+
+        }
+        if (currenttypeEvent == 2) {
+            Result = Multiplayer();
+
+        } else {
+            Result = Multiplayer1();
+
+        }
+
+        return Result;
+    }
+
+    private String SingleEventHandler() {
         if (gameEnd) {
             return "";
         }
+        int eventnum = eventsSingle.length;
 
         int Guy = rndguy();
         int Alive = 0;
-        int currenttypeEvent = rndtypevent();
-        int currentEvent = rndevent();
-        
+        int currentEvent = rndevent(eventnum);
+
         boolean isDying = eventsSDeath[currentEvent];
         int currentGuy = rndguy();
         if (isDying) {
@@ -98,8 +117,73 @@ public class GameForm extends javax.swing.JFrame {
         return null;
     }
 
-    private int rndevent() {
-        int num = rnd.nextInt(eventsSingle.length);
+    private String Multiplayer() {
+        if (gameEnd) {
+            return "";
+        }
+        int eventnum = eventsMultiplayer.length;
+
+        int Guy = rndguy();
+        int Alive = 0;
+        int currentEvent = rndevent(eventnum);
+
+        boolean isDying = eventsMDeath[currentEvent];
+        int currentGuy = rndguy();
+        if (isDying) {
+            PPcharacters[currentGuy].setStatus(false);
+            for (int i = 0; i < PPcharacters.length; i++) {
+                if (PPcharacters[i].isStatus()) {
+                    Alive++;
+                }
+
+            }
+            if (Alive == 1) {
+                jButton2.setVisible(false);
+                gameEnd = true;
+                return PPcharacters[Guy].getName() + " won the hunger games";
+            }
+        }
+        if (Alive != 1) {
+            return PPcharacters[currentGuy].getName() + " " + eventsMultiplayer[currentEvent] + " " + PPcharacters[currentGuy].getName();
+
+        }
+        return null;
+    }
+
+    private String Multiplayer1() {
+        if (gameEnd) {
+            return "";
+        }
+        int eventnum = eventsM1ultiplayer.length;
+        int Guy = rndguy();
+        int Alive = 0;
+        int currentEvent = rndevent(eventnum);
+
+        boolean isDying = eventsM1Death[currentEvent];
+        int currentGuy = rndguy();
+        if (isDying) {
+            PPcharacters[currentGuy].setStatus(false);
+            for (int i = 0; i < PPcharacters.length; i++) {
+                if (PPcharacters[i].isStatus()) {
+                    Alive++;
+                }
+
+            }
+            if (Alive == 1) {
+                jButton2.setVisible(false);
+                gameEnd = true;
+                return PPcharacters[Guy].getName() + " won the hunger games";
+            }
+        }
+        if (Alive != 1) {
+            return PPcharacters[currentGuy].getName() + " " + eventsM1ultiplayer[currentEvent]+" "+ PPcharacters[currentGuy].getName()+" "+eventsM2ultiplayer[currentEvent];
+
+        }
+        return null;
+    }
+
+    private int rndevent(int eventnum) {
+        int num = rnd.nextInt(eventnum);
 
         return num;
 
