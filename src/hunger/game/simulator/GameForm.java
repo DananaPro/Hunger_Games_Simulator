@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 public class GameForm extends javax.swing.JFrame {
 
     private Participant[] PPcharacters; // Picked participants
-    private String[] AliveCharacters; // alive participants
 
     private String[] eventsSingle;
     private String[] eventsMultiplayer;
@@ -69,16 +68,12 @@ public class GameForm extends javax.swing.JFrame {
         String Result;
 
         int currenttypeEvent = rndtypevent();
-        if (currenttypeEvent == 1) {
+        if (currenttypeEvent == 0) {
             Result = SingleEventHandler();
-
-        }
-        if (currenttypeEvent == 2) {
+        } else if (currenttypeEvent == 1) {
             Result = Multiplayer();
-
         } else {
             Result = Multiplayer1();
-
         }
 
         return Result;
@@ -129,8 +124,13 @@ public class GameForm extends javax.swing.JFrame {
 
         boolean isDying = eventsMDeath[currentEvent];
         int currentGuy = rndguy();
+        int currentsSecondGuy = rndguy();
+        while (currentsSecondGuy == currentGuy) {
+            currentsSecondGuy = rndguy();
+        }
+
         if (isDying) {
-            PPcharacters[currentGuy].setStatus(false);
+            PPcharacters[currentsSecondGuy].setStatus(false);
             for (int i = 0; i < PPcharacters.length; i++) {
                 if (PPcharacters[i].isStatus()) {
                     Alive++;
@@ -144,7 +144,7 @@ public class GameForm extends javax.swing.JFrame {
             }
         }
         if (Alive != 1) {
-            return PPcharacters[currentGuy].getName() + " " + eventsMultiplayer[currentEvent] + " " + PPcharacters[currentGuy].getName();
+            return PPcharacters[currentGuy].getName() + " " + eventsMultiplayer[currentEvent] + " " + PPcharacters[currentsSecondGuy].getName();
 
         }
         return null;
@@ -161,8 +161,12 @@ public class GameForm extends javax.swing.JFrame {
 
         boolean isDying = eventsM1Death[currentEvent];
         int currentGuy = rndguy();
+        int currentsSecondGuy = rndguy();
+        while (currentsSecondGuy == currentGuy) {
+            currentsSecondGuy = rndguy();
+        }
         if (isDying) {
-            PPcharacters[currentGuy].setStatus(false);
+            PPcharacters[currentsSecondGuy].setStatus(false);
             for (int i = 0; i < PPcharacters.length; i++) {
                 if (PPcharacters[i].isStatus()) {
                     Alive++;
@@ -176,7 +180,7 @@ public class GameForm extends javax.swing.JFrame {
             }
         }
         if (Alive != 1) {
-            return PPcharacters[currentGuy].getName() + " " + eventsM1ultiplayer[currentEvent]+" "+ PPcharacters[currentGuy].getName()+" "+eventsM2ultiplayer[currentEvent];
+            return PPcharacters[currentGuy].getName() + " " + eventsM1ultiplayer[currentEvent] + " " + PPcharacters[currentsSecondGuy].getName() + " " + eventsM2ultiplayer[currentEvent];
 
         }
         return null;
