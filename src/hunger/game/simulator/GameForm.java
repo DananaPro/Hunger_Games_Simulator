@@ -6,29 +6,46 @@ import javax.swing.ImageIcon;
 public class GameForm extends javax.swing.JFrame {
 
     private Participant[] PPcharacters; // Picked participants
-    private Participant[] AliveCharacters; // alive participants
+    private String[] AliveCharacters; // alive participants
 
     private String[] eventsSingle;
+    private String[] eventsMultiplayer;
+
+    private String[] eventsM1ultiplayer;
+    private String[] eventsM2ultiplayer;
+
     private boolean[] eventsSDeath;
+    private boolean[] eventsMDeath;
+
+    private boolean[] eventsM1Death;
+    private boolean[] eventsM2Death;
+
     private static Random rnd = new Random();
+    private boolean gameEnd = false;
 
     GameForm(Participant[] PPcharacters) {
         initComponents();
         ImageIcon l = new ImageIcon("logo.png");
         jLabel1.setIcon(l);
         this.PPcharacters = PPcharacters;
-        AliveCharacters = new Participant[PPcharacters.length];
 
-        for (int i = 0; i < PPcharacters.length; i++) {
-            if (PPcharacters[i].isStatus()) {
-                AliveCharacters[i] = new Participant(PPcharacters[i].getName());
-            }
-        }
         eventsSingle = new String[]{"fell from a tree and died", "tried to make a fire but failed",
             "found a bow but instantly broke it", "explores the arena.",
             "questions her sanity.", "tries to spear fish with a trident.",
             "Rue goes hunting.", "receives fresh food from an unknown sponsor.", "picks flowers.", "tried to swim but drowned and died"};
         eventsSDeath = new boolean[]{true, false, false, false, false, false, false, false, false, true};
+        eventsM1ultiplayer = new String[]{"attacks ",
+            "and ", "destroys "};
+        eventsM2ultiplayer = new String[]{
+            "but managed to escape", "Going to look for enemies", "'s while he sleeps"
+        };
+        eventsMultiplayer = new String[]{
+            " killed ", " stabed "
+        };
+
+        eventsM1Death = new boolean[]{false, false, false};
+        eventsM2Death = new boolean[]{false, false, false};
+        eventsMDeath = new boolean[]{true, true};
 
         jLabel5.setText(handleEvent());
 
@@ -42,28 +59,43 @@ public class GameForm extends javax.swing.JFrame {
         jLabel19.setText(handleEvent());
     }
 
-    private void aliveArry() {
-        for (int i = 0; i < PPcharacters.length; i++) {
-            if (PPcharacters[i].isStatus()) {
-                AliveCharacters[i] = new Participant(PPcharacters[i].getName());
-            }
-        }
+    private int rndtypevent() {
+        int num = rnd.nextInt(eventsSingle.length);
+
+        return num;
     }
 
     private String handleEvent() {
-        int Guy = rndguy();
-
-        if (AliveCharacters.length == 1) {
-            return PPcharacters[Guy].getName() + " won the hunger games";
-
+        if (gameEnd) {
+            return "";
         }
+
+        int Guy = rndguy();
+        int Alive = 0;
+        int currenttypeEvent = rndtypevent();
         int currentEvent = rndevent();
+        
         boolean isDying = eventsSDeath[currentEvent];
         int currentGuy = rndguy();
         if (isDying) {
             PPcharacters[currentGuy].setStatus(false);
+            for (int i = 0; i < PPcharacters.length; i++) {
+                if (PPcharacters[i].isStatus()) {
+                    Alive++;
+                }
+
+            }
+            if (Alive == 1) {
+                jButton2.setVisible(false);
+                gameEnd = true;
+                return PPcharacters[Guy].getName() + " won the hunger games";
+            }
         }
-        return PPcharacters[currentGuy].getName() + " " + eventsSingle[currentEvent];
+        if (Alive != 1) {
+            return PPcharacters[currentGuy].getName() + " " + eventsSingle[currentEvent];
+
+        }
+        return null;
     }
 
     private int rndevent() {
@@ -74,26 +106,23 @@ public class GameForm extends javax.swing.JFrame {
     }
 
     private int rndguy() {
-        int guynum = rnd.nextInt(AliveCharacters.length);
-        if (PPcharacters[guynum].isStatus()) {
-            return guynum;
-
-        } else {
-            return rndguy();
+        int guynum = rnd.nextInt(PPcharacters.length);
+        while (!PPcharacters[guynum].isStatus()) {
+            guynum = rnd.nextInt(PPcharacters.length);
         }
+        return guynum;
     }
 
     private void setText() {
         eventsSingle = new String[]{"fell from a tree and died", "tried to make a fire but failed",
             "found a bow but instantly broke it", "explores the arena.",
             "questions her sanity.", "tries to spear fish with a trident.",
-            "Rue goes hunting.", "receives fresh food from an unknown sponsor.", "picks flowers.", "tried to swim but drowned and died"};
-        eventsSDeath = new boolean[]{true, false, false, false, false, false, false, false, false, true};
+            "Rue goes hunting.", "receives fresh food from an unknown sponsor.",
+            "picks flowers.", "tried to swim but drowned and died", "dies from hunger."};
+        eventsSDeath = new boolean[]{true, false, false, false, false, false, false, false, false, true, true};
 
         jLabel5.setText(handleEvent());
-
         jLabel7.setText(handleEvent());
-
         jLabel9.setText(handleEvent());
         jLabel11.setText(handleEvent());
         jLabel13.setText(handleEvent());
