@@ -19,6 +19,8 @@ public class GameForm extends javax.swing.JFrame {
     private boolean[] eventsM1Death;
     private boolean[] eventsM2Death;
 
+    private Status st;
+
     private static Random rnd = new Random();
     private boolean gameEnd = false;
 
@@ -28,18 +30,19 @@ public class GameForm extends javax.swing.JFrame {
         jLabel1.setIcon(l);
         this.PPcharacters = PPcharacters;
 
-        eventsSingle = new String[]{"fell from a tree and died", "tried to make a fire but failed",
-            "found a bow but instantly broke it", "explores the arena.",
+        eventsSingle = new String[]{"fell from a tree and died.", "tried to make a fire but failed.",
+            "found a bow but instantly broke it.", "explores the arena.",
             "questions her sanity.", "tries to spear fish with a trident.",
-            "Rue goes hunting.", "receives fresh food from an unknown sponsor.", "picks flowers.", "tried to swim but drowned and died"};
+            "Rue goes hunting.", "receives fresh food from an unknown sponsor.",
+            "picks flowers.", "tried to swim, but drowned and died."};
         eventsSDeath = new boolean[]{true, false, false, false, false, false, false, false, false, true};
         eventsM1ultiplayer = new String[]{"attacks ",
             "and ", "destroys "};
         eventsM2ultiplayer = new String[]{
-            "but managed to escape", "Going to look for enemies", "'s equipment while he sleeps"
+            " but managed to escape", " going to look for enemies", "'s equipment while he was sleeping"
         };
         eventsMultiplayer = new String[]{
-            " killed ", " stabed "
+            "killed", "stabbed"
         };
 
         eventsM1Death = new boolean[]{false, false, false};
@@ -56,6 +59,9 @@ public class GameForm extends javax.swing.JFrame {
         jLabel15.setText(handleEvent());
         jLabel17.setText(handleEvent());
         jLabel19.setText(handleEvent());
+
+        st = new Status(PPcharacters, this);
+
     }
 
     private int rndtypevent() {
@@ -66,6 +72,10 @@ public class GameForm extends javax.swing.JFrame {
 
     private String handleEvent() {
         String Result;
+
+        if (gameEnd) {
+            return "";
+        }
 
         int currenttypeEvent = rndtypevent();
         if (currenttypeEvent == 0) {
@@ -80,12 +90,8 @@ public class GameForm extends javax.swing.JFrame {
     }
 
     private String SingleEventHandler() {
-        if (gameEnd) {
-            return "";
-        }
         int eventnum = eventsSingle.length;
 
-        int Guy = rndguy();
         int Alive = 0;
         int currentEvent = rndevent(eventnum);
 
@@ -100,6 +106,8 @@ public class GameForm extends javax.swing.JFrame {
 
             }
             if (Alive == 1) {
+                int Guy = rndguy();
+
                 jButton2.setVisible(false);
                 gameEnd = true;
                 return PPcharacters[Guy].getName() + " won the hunger games";
@@ -113,12 +121,8 @@ public class GameForm extends javax.swing.JFrame {
     }
 
     private String Multiplayer() {
-        if (gameEnd) {
-            return "";
-        }
         int eventnum = eventsMultiplayer.length;
 
-        int Guy = rndguy();
         int Alive = 0;
         int currentEvent = rndevent(eventnum);
 
@@ -138,6 +142,8 @@ public class GameForm extends javax.swing.JFrame {
 
             }
             if (Alive == 1) {
+                int Guy = rndguy();
+
                 jButton2.setVisible(false);
                 gameEnd = true;
                 return PPcharacters[Guy].getName() + " won the hunger games";
@@ -151,11 +157,7 @@ public class GameForm extends javax.swing.JFrame {
     }
 
     private String Multiplayer1() {
-        if (gameEnd) {
-            return "";
-        }
         int eventnum = eventsM1ultiplayer.length;
-        int Guy = rndguy();
         int Alive = 0;
         int currentEvent = rndevent(eventnum);
 
@@ -174,13 +176,15 @@ public class GameForm extends javax.swing.JFrame {
 
             }
             if (Alive == 1) {
+                int Guy = rndguy();
+
                 jButton2.setVisible(false);
                 gameEnd = true;
-                return PPcharacters[Guy].getName() + " won the hunger games";
+                return PPcharacters[Guy].getName() + " won the hunger games!";
             }
         }
         if (Alive != 1) {
-            return PPcharacters[currentGuy].getName() + " " + eventsM1ultiplayer[currentEvent] + " " + PPcharacters[currentsSecondGuy].getName() + " " + eventsM2ultiplayer[currentEvent];
+            return PPcharacters[currentGuy].getName() + " " + eventsM1ultiplayer[currentEvent]  + PPcharacters[currentsSecondGuy].getName() + eventsM2ultiplayer[currentEvent];
 
         }
         return null;
@@ -202,12 +206,6 @@ public class GameForm extends javax.swing.JFrame {
     }
 
     private void setText() {
-        eventsSingle = new String[]{"fell from a tree and died", "tried to make a fire but failed",
-            "found a bow but instantly broke it", "explores the arena.",
-            "questions her sanity.", "tries to spear fish with a trident.",
-            "Rue goes hunting.", "receives fresh food from an unknown sponsor.",
-            "picks flowers.", "tried to swim but drowned and died", "dies from hunger."};
-        eventsSDeath = new boolean[]{true, false, false, false, false, false, false, false, false, true, true};
 
         jLabel5.setText(handleEvent());
         jLabel7.setText(handleEvent());
@@ -231,6 +229,11 @@ public class GameForm extends javax.swing.JFrame {
         int SPercent = rnd.nextInt(100);
         return SPercent < Percent;
 
+    }
+
+    private void status() {
+        st.updateText();
+        st.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -300,12 +303,12 @@ public class GameForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -318,6 +321,11 @@ public class GameForm extends javax.swing.JFrame {
         });
 
         jButton3.setText("Status");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.PAGE_AXIS));
 
@@ -432,6 +440,12 @@ public class GameForm extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         setText();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        status();
+        setVisible(false);
+
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
