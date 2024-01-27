@@ -12,32 +12,49 @@ public class Status extends javax.swing.JFrame {
         ImageIcon l = new ImageIcon("logo.png");
         jLabel25.setIcon(l);
         jLabel1.setText(PPcharacters[0].getName());
+        jLabel28.setText(isDead(0));
 
         jLabel14.setText(PPcharacters[1].getName());
+        jLabel29.setText(isDead(1));
 
         jLabel3.setText(PPcharacters[2].getName());
+        jLabel30.setText(isDead(2));
 
         jLabel4.setText(PPcharacters[3].getName());
+        jLabel31.setText(isDead(3));
 
         jLabel8.setText(PPcharacters[4].getName());
+        jLabel35.setText(isDead(4));
 
         jLabel6.setText(PPcharacters[5].getName());
+        jLabel33.setText(isDead(5));
 
         jLabel7.setText(PPcharacters[6].getName());
+        jLabel34.setText(isDead(6));
 
         jLabel5.setText(PPcharacters[7].getName());
+        jLabel32.setText(isDead(7));
 
         jLabel12.setText(PPcharacters[8].getName());
+        jLabel36.setText(isDead(8));
+
         jLabel22.setText(PPcharacters[9].getName());
+        jLabel37.setText(isDead(9));
 
         jLabel10.setText(PPcharacters[10].getName());
+        jLabel38.setText(isDead(10));
 
         jLabel9.setText(PPcharacters[11].getName());
+        jLabel39.setText(isDead(11));
 
     }
 
-    private boolean isDead(int i) {
-        return PPcharacters[i].isStatus();
+    private String isDead(int i) {
+        if (PPcharacters[i].isStatus()) {
+            return "Alive";
+        } else {
+            return "Deceased";
+        }
     }
 
     @SuppressWarnings("unchecked")
