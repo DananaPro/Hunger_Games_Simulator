@@ -5,6 +5,8 @@ import javax.swing.ImageIcon;
 
 public class GameForm extends javax.swing.JFrame {
 
+    public int currentGuy;
+    int Alive;
     private Participant[] PPcharacters; // Picked participants
 
     private String[] eventsSingle;
@@ -48,17 +50,60 @@ public class GameForm extends javax.swing.JFrame {
         eventsM1Death = new boolean[]{false, false, false};
         eventsM2Death = new boolean[]{false, false, false};
         eventsMDeath = new boolean[]{true, true};
-
         jLabel5.setText(handleEvent());
+        if (gameEnd) {
+            jLabel2.setText("");
+        } else {
+            jLabel2.setIcon(PPcharacters[currentGuy].getPic());
+        }
 
         jLabel7.setText(handleEvent());
-
+        if (gameEnd) {
+            jLabel6.setText("");
+        } else {
+            jLabel6.setIcon(PPcharacters[currentGuy].getPic());
+        }
         jLabel9.setText(handleEvent());
+        if (gameEnd) {
+            jLabel8.setText("");
+        } else {
+            jLabel8.setIcon(PPcharacters[currentGuy].getPic());
+        }
+
         jLabel11.setText(handleEvent());
+        if (gameEnd) {
+            jLabel10.setText("");
+        } else {
+            jLabel10.setIcon(PPcharacters[currentGuy].getPic());
+        }
+
         jLabel13.setText(handleEvent());
+        if (gameEnd) {
+            jLabel12.setText("");
+        } else {
+            jLabel12.setIcon(PPcharacters[currentGuy].getPic());
+        }
+
         jLabel15.setText(handleEvent());
+        if (gameEnd) {
+            jLabel14.setText("");
+        } else {
+            jLabel14.setIcon(PPcharacters[currentGuy].getPic());
+        }
+
         jLabel17.setText(handleEvent());
+        if (gameEnd) {
+            jLabel16.setText("");
+        } else {
+            jLabel16.setIcon(PPcharacters[currentGuy].getPic());
+        }
+
         jLabel19.setText(handleEvent());
+        if (gameEnd) {
+            jLabel18.setText("");
+        } else {
+            jLabel18.setIcon(PPcharacters[currentGuy].getPic());
+        }
 
         st = new Status(PPcharacters, this);
 
@@ -92,11 +137,11 @@ public class GameForm extends javax.swing.JFrame {
     private String SingleEventHandler() {
         int eventnum = eventsSingle.length;
 
-        int Alive = 0;
+        Alive = 0;
         int currentEvent = rndevent(eventnum);
 
         boolean isDying = eventsSDeath[currentEvent];
-        int currentGuy = rndguy();
+        currentGuy = rndguy();
         if (isDying) {
             PPcharacters[currentGuy].setStatus(false);
             for (int i = 0; i < PPcharacters.length; i++) {
@@ -106,28 +151,29 @@ public class GameForm extends javax.swing.JFrame {
 
             }
             if (Alive == 1) {
-                int Guy = rndguy();
+                int currentGuy = rndguy();
 
                 jButton2.setVisible(false);
                 gameEnd = true;
-                return PPcharacters[Guy].getName() + " won the hunger games";
+                return PPcharacters[currentGuy].getName() + " won the hunger games";
             }
         }
         if (Alive != 1) {
             return PPcharacters[currentGuy].getName() + " " + eventsSingle[currentEvent];
 
         }
+
         return null;
     }
 
     private String Multiplayer() {
         int eventnum = eventsMultiplayer.length;
 
-        int Alive = 0;
+        Alive = 0;
         int currentEvent = rndevent(eventnum);
 
         boolean isDying = eventsMDeath[currentEvent];
-        int currentGuy = rndguy();
+        currentGuy = rndguy();
         int currentsSecondGuy = rndguy();
         while (currentsSecondGuy == currentGuy) {
             currentsSecondGuy = rndguy();
@@ -142,11 +188,11 @@ public class GameForm extends javax.swing.JFrame {
 
             }
             if (Alive == 1) {
-                int Guy = rndguy();
+                int currentGuy = rndguy();
 
                 jButton2.setVisible(false);
                 gameEnd = true;
-                return PPcharacters[Guy].getName() + " won the hunger games";
+                return PPcharacters[currentGuy].getName() + " won the hunger games";
             }
         }
         if (Alive != 1) {
@@ -158,11 +204,11 @@ public class GameForm extends javax.swing.JFrame {
 
     private String Multiplayer1() {
         int eventnum = eventsM1ultiplayer.length;
-        int Alive = 0;
+        Alive = 0;
         int currentEvent = rndevent(eventnum);
 
         boolean isDying = eventsM1Death[currentEvent];
-        int currentGuy = rndguy();
+        currentGuy = rndguy();
         int currentsSecondGuy = rndguy();
         while (currentsSecondGuy == currentGuy) {
             currentsSecondGuy = rndguy();
@@ -176,15 +222,15 @@ public class GameForm extends javax.swing.JFrame {
 
             }
             if (Alive == 1) {
-                int Guy = rndguy();
+                int currentGuy = rndguy();
 
                 jButton2.setVisible(false);
                 gameEnd = true;
-                return PPcharacters[Guy].getName() + " won the hunger games!";
+                return PPcharacters[currentGuy].getName() + " won the hunger games!";
             }
         }
         if (Alive != 1) {
-            return PPcharacters[currentGuy].getName() + " " + eventsM1ultiplayer[currentEvent]  + PPcharacters[currentsSecondGuy].getName() + eventsM2ultiplayer[currentEvent];
+            return PPcharacters[currentGuy].getName() + " " + eventsM1ultiplayer[currentEvent] + PPcharacters[currentsSecondGuy].getName() + eventsM2ultiplayer[currentEvent];
 
         }
         return null;
@@ -206,15 +252,60 @@ public class GameForm extends javax.swing.JFrame {
     }
 
     private void setText() {
-
         jLabel5.setText(handleEvent());
+        if (gameEnd) {
+            jLabel2.setText("");
+        } else {
+            jLabel2.setIcon(PPcharacters[currentGuy].getPic());
+        }
+
         jLabel7.setText(handleEvent());
+        if (gameEnd) {
+            jLabel6.setText("");
+        } else {
+            jLabel6.setIcon(PPcharacters[currentGuy].getPic());
+        }
         jLabel9.setText(handleEvent());
+        if (gameEnd) {
+            jLabel8.setText("");
+        } else {
+            jLabel8.setIcon(PPcharacters[currentGuy].getPic());
+        }
+
         jLabel11.setText(handleEvent());
+        if (gameEnd) {
+            jLabel10.setText("");
+        } else {
+            jLabel10.setIcon(PPcharacters[currentGuy].getPic());
+        }
+
         jLabel13.setText(handleEvent());
+        if (gameEnd) {
+            jLabel12.setText("");
+        } else {
+            jLabel12.setIcon(PPcharacters[currentGuy].getPic());
+        }
+
         jLabel15.setText(handleEvent());
+        if (gameEnd) {
+            jLabel14.setText("");
+        } else {
+            jLabel14.setIcon(PPcharacters[currentGuy].getPic());
+        }
+
         jLabel17.setText(handleEvent());
+        if (gameEnd) {
+            jLabel16.setText("");
+        } else {
+            jLabel16.setIcon(PPcharacters[currentGuy].getPic());
+        }
+
         jLabel19.setText(handleEvent());
+        if (gameEnd) {
+            jLabel18.setText("");
+        } else {
+            jLabel18.setIcon(PPcharacters[currentGuy].getPic());
+        }
     }
 
     // Building a new list of all alive characters from all the participants
@@ -330,7 +421,6 @@ public class GameForm extends javax.swing.JFrame {
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.PAGE_AXIS));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("pic");
         jLabel2.setAlignmentX(0.5F);
         jPanel5.add(jLabel2);
 
@@ -340,7 +430,6 @@ public class GameForm extends javax.swing.JFrame {
         jPanel5.add(jLabel5);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel6.setText("pic");
         jLabel6.setAlignmentX(0.5F);
         jPanel5.add(jLabel6);
 
@@ -350,7 +439,6 @@ public class GameForm extends javax.swing.JFrame {
         jPanel5.add(jLabel7);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel8.setText("pic");
         jLabel8.setAlignmentX(0.5F);
         jPanel5.add(jLabel8);
 
@@ -360,7 +448,6 @@ public class GameForm extends javax.swing.JFrame {
         jPanel5.add(jLabel9);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel10.setText("pic");
         jLabel10.setAlignmentX(0.5F);
         jPanel5.add(jLabel10);
 
@@ -370,7 +457,6 @@ public class GameForm extends javax.swing.JFrame {
         jPanel5.add(jLabel11);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel12.setText("pic");
         jLabel12.setAlignmentX(0.5F);
         jPanel5.add(jLabel12);
 
@@ -380,7 +466,6 @@ public class GameForm extends javax.swing.JFrame {
         jPanel5.add(jLabel13);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel14.setText("pic");
         jLabel14.setAlignmentX(0.5F);
         jPanel5.add(jLabel14);
 
@@ -390,7 +475,6 @@ public class GameForm extends javax.swing.JFrame {
         jPanel5.add(jLabel15);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel16.setText("pic");
         jLabel16.setAlignmentX(0.5F);
         jPanel5.add(jLabel16);
 
@@ -400,7 +484,6 @@ public class GameForm extends javax.swing.JFrame {
         jPanel5.add(jLabel17);
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel18.setText("pic");
         jLabel18.setAlignmentX(0.5F);
         jPanel5.add(jLabel18);
 
@@ -424,7 +507,7 @@ public class GameForm extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 956, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
