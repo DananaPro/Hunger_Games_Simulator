@@ -9,25 +9,40 @@ import javax.swing.JFrame;
 public class ChossingForm extends javax.swing.JFrame {
 
     private String[] Tcharacters; // Names of all characters
+    private String[] T1characters; // Names of all characters
     private JCheckBox[] TCHEcharacters; // Checkboxes with all characters
     private Participant[] PPcharacters; // Picked participants
+    private ImageIcon[] TIcharacters;
 
     public ChossingForm() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        Tcharacters = new String[]{"Barack Obama", "Peppa Pig", "Mike Wazowski",
-            "King Solomon", "Ted Jordan", "Elvis Presley", "Jake Peralta", "Chandler Bing",
+        Tcharacters = new String[]{"Barack Obama", "peppa-pig", "Mike Wazowski",
+            "King Solomon", "Michael Jackson", "Elvis Presley", "Jake Peralta", "Chandler Bing",
             "My Little Pony", "mr incredible", "Charizard", "Pinocchio", "spongebob",
             "Saitama", "nikola tesla", "Mister Bean", "Scooby Doo", "Hide the pain guy",
             "Stewie Griffin", "Bernie Sanders", "Queen Elizabeth II", "Albert Einstein",
-            "Technoblade", "Bart Simpson", "Frankenstein", "Shrek", "mike tyson", "Harry Potter",
-            "Golem", "Donkey Kong", "Pepe the Frog", "jesus christ", "Donald Trump",
+            "Technoblade", "Bart Simpson", "the rock", "Shrek", "Jhon cena", "Harry Potter",
+            "El primo", "Donkey Kong", "Pepe the Frog", "jesus christ", "Donald Trump",
             "king from clash royale", "Freddie Mercury", "Borat Sagdiyev"};
+        T1characters = new String[]{"Barack_Obama(1).JPG", "Peppa-pig(1).JPG", "mike wazowski(1).JPG",
+            "king-solomon(1).JPG", "Michael_Jackson(1).JPG", "Elvis_Presley_(1).JPG", "jake-peralte(1).JPG", "chandler-bing(1).JPG",
+            "my-little-pony(1).JPG", "mr-incredible(1).JPG", "Charizard(1).JPG", "pinocchio(1).JPG", "SPONGEBOB(1).JPG",
+            "Saitama(1).JPG", "nikola tesla(1).JPG", "mr-bean(1).JPG", "Scooby-Doo(1).JPG", "hide-the-pain-guy(1).JPG",
+            "Stewie griffin.JPG", "bernie-sanders(1).JPG", "qween-elizabeth(1).JPG", "albert-einstein(1).JPG",
+            "Technoblade(1).JPG", "bart-simpson(1).JPG", "the-rock(1).JPG", "Shrek(1).JPG", "Jhon cena(1).JPG", "harry-potter(1).JPG",
+            "El-primo(1).JPG", "Donkey_Kong(1).JPG", "pepe-the-frog(1).JPG", "jesus Christ(1).jpg", "donald-trump(1).JPG",
+            "king-from-clash-royale(1).JPG", "Freddie-Mercury(1).JPG", "boart(1).JPG"};
         TCHEcharacters = new JCheckBox[35];
+        TIcharacters = new ImageIcon[35];
+
         for (int i = 0; i < 35; i++) {
             TCHEcharacters[i] = new JCheckBox(Tcharacters[i]);
             checkPanel.add(TCHEcharacters[i]);
+        }
+        for (int i = 0; i < 35; i++) {
+            TIcharacters[i] = new ImageIcon(T1characters[i]);
         }
         PPcharacters = new Participant[12];
 
@@ -68,12 +83,13 @@ public class ChossingForm extends javax.swing.JFrame {
         setVisible(false);
 
         int selectedIndex = 0;
-        for (JCheckBox TCHEcharacter : TCHEcharacters) {
+        for (int i = 0; i < TCHEcharacters.length; i++) {
+            JCheckBox TCHEcharacter = TCHEcharacters[i];
             if (TCHEcharacter.isSelected()) {
 
                 //PPcharacters[selectedIndex++]  = new Participant(TCHEcharacter.getText());
                 //identical to:
-                PPcharacters[selectedIndex] = new Participant(TCHEcharacter.getText());
+                PPcharacters[selectedIndex] = new Participant(TCHEcharacter.getText(), TIcharacters[i]);
                 selectedIndex++;
 
             }
