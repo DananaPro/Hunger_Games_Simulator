@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class ChossingForm extends javax.swing.JFrame {
 
@@ -44,6 +45,16 @@ public class ChossingForm extends javax.swing.JFrame {
         for (int i = 0; i < 35; i++) {
             TIcharacters[i] = new ImageIcon(T1characters[i]);
         }
+//        JLabel[] image = {jLabel6, jLabel7, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12,
+//            jLabel13, jLabel14, jLabel15, jLabel16, jLabel17, jLabel18, jLabel19, jLabel20, jLabel21,
+//            jLabel22, jLabel23, jLabel24, jLabel25, jLabel26, jLabel27, jLabel28, jLabel29, jLabel30,
+//            jLabel31, jLabel32, jLabel33, jLabel34, jLabel35, jLabel36, jLabel37, jLabel38,
+//            jLabel39, jLabel40};
+//        for (int i = 0; i < 35; i++) {
+//            JLabel label = new JLabel(TIcharacters[i]);
+//            checkPanel.add(label);
+//        }
+
         PPcharacters = new Participant[12];
 
         ImageIcon l = new ImageIcon("logo.png");
