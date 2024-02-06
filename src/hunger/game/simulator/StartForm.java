@@ -53,7 +53,7 @@ public class StartForm extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Game Instructions\nIn the game you can choose 12 people who participated in the hunger game from a list of 48 participants.\nEvery day there will be events that happened that day.\nAfter each day in the game you will be given two options:\n1. Show the status of each player including their kill count and whether they are dead.\n2. Continue to the next day. Then again events will appear and the same two options.\nAfter one player remains, the player will be considered the winner\n");
+        jTextArea1.setText("Game Instructions\nIn the game you can choose 12 people who participated\nin the hunger game from a list of 48 participants.\nEvery day there will be events that happened that day.\nAfter each day in the game you will be given two options:\n1. Show the status of each player including their kill count and whether they are dead.\n2. Continue to the next day. Then again events will appear and the same two options.\nAfter one player remains, the player will be considered the winner\n");
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

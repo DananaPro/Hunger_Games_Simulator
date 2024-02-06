@@ -90,7 +90,7 @@
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Game Instructions&#xa;In the game you can choose 12 people who participated in the hunger game from a list of 48 participants.&#xa;Every day there will be events that happened that day.&#xa;After each day in the game you will be given two options:&#xa;1. Show the status of each player including their kill count and whether they are dead.&#xa;2. Continue to the next day. Then again events will appear and the same two options.&#xa;After one player remains, the player will be considered the winner&#xa;"/>
+                <Property name="text" type="java.lang.String" value="Game Instructions&#xa;In the game you can choose 12 people who participated&#xa;in the hunger game from a list of 48 participants.&#xa;Every day there will be events that happened that day.&#xa;After each day in the game you will be given two options:&#xa;1. Show the status of each player including their kill count and whether they are dead.&#xa;2. Continue to the next day. Then again events will appear and the same two options.&#xa;After one player remains, the player will be considered the winner&#xa;"/>
               </Properties>
             </Component>
           </SubComponents>
