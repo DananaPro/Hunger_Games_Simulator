@@ -1,11 +1,13 @@
 package hunger.game.simulator;
 
+import java.awt.BorderLayout;
 import java.awt.Frame;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 public class ChossingForm extends javax.swing.JFrame {
 
@@ -26,25 +28,34 @@ public class ChossingForm extends javax.swing.JFrame {
             "Stewie Griffin", "Bernie Sanders", "Queen Elizabeth II", "Albert Einstein",
             "Technoblade", "Bart Simpson", "the rock", "Shrek", "Jhon cena", "Harry Potter",
             "El primo", "Donkey Kong", "Pepe the Frog", "jesus christ", "Donald Trump",
-            "king from clash royale", "Freddie Mercury", "Borat Sagdiyev"};
+            "King from clash royale", "Freddie Mercury", "Borat Sagdiyev"};
         T1characters = new String[]{"Barack_Obama(1).JPG", "Peppa-pig(1).JPG", "mike wazowski(1).JPG",
             "king-solomon(1).JPG", "Michael_Jackson(1).JPG", "Elvis_Presley_(1).JPG", "jake-peralte(1).JPG", "chandler-bing(1).JPG",
             "my-little-pony(1).JPG", "mr-incredible(1).JPG", "Charizard(1).JPG", "pinocchio(1).JPG", "SPONGEBOB(1).JPG",
             "Saitama(1).JPG", "nikola tesla(1).JPG", "mr-bean(1).JPG", "Scooby-Doo(1).JPG", "hide-the-pain-guy(1).JPG",
             "Stewie griffin.JPG", "bernie-sanders(1).JPG", "qween-elizabeth(1).JPG", "albert-einstein(1).JPG",
-            "Technoblade(1).JPG", "bart-simpson(1).JPG", "the-rock(1).JPG", "Shrek(1).JPG", "Jhon cena(1).JPG", "harry-potter(1).JPG",
+            "Technoblade(1).JPG", "bart-simpson(1).JPG", "the-rock(1).JPG", "Shrek(1).JPG", "John_cena(1).JPG", "harry-potter(1).JPG",
             "El-primo(1).JPG", "Donkey_Kong(1).JPG", "pepe-the-frog(1).JPG", "jesus Christ(1).jpg", "donald-trump(1).JPG",
             "king-from-clash-royale(1).JPG", "Freddie-Mercury(1).JPG", "boart(1).JPG"};
         TCHEcharacters = new JCheckBox[35];
         TIcharacters = new ImageIcon[35];
 
         for (int i = 0; i < 35; i++) {
-            TCHEcharacters[i] = new JCheckBox(Tcharacters[i]);
-            checkPanel.add(TCHEcharacters[i]);
-        }
-        for (int i = 0; i < 35; i++) {
             TIcharacters[i] = new ImageIcon(T1characters[i]);
         }
+        for (int i = 0; i < 35; i++) {
+            JLabel label = new JLabel(TIcharacters[i]);
+            checkPanel.add(label);
+            TCHEcharacters[i] = new JCheckBox(Tcharacters[i]);
+            checkPanel.add(TCHEcharacters[i]);
+
+        }
+        JScrollPane scrollPane1 = new JScrollPane();
+        scrollPane1.setViewportView(checkPanel);
+        getContentPane().add(scrollPane1, java.awt.BorderLayout.CENTER);
+        scrollPane1.setWheelScrollingEnabled(true);
+        scrollPane1.getVerticalScrollBar().setUnitIncrement(20);
+
 //        JLabel[] image = {jLabel6, jLabel7, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12,
 //            jLabel13, jLabel14, jLabel15, jLabel16, jLabel17, jLabel18, jLabel19, jLabel20, jLabel21,
 //            jLabel22, jLabel23, jLabel24, jLabel25, jLabel26, jLabel27, jLabel28, jLabel29, jLabel30,
@@ -54,7 +65,6 @@ public class ChossingForm extends javax.swing.JFrame {
 //            JLabel label = new JLabel(TIcharacters[i]);
 //            checkPanel.add(label);
 //        }
-
         PPcharacters = new Participant[12];
 
         ImageIcon l = new ImageIcon("logo.png");
@@ -81,7 +91,7 @@ public class ChossingForm extends javax.swing.JFrame {
         if (selectedIndex == 12) {
             startGame();
         } else {
-            jLabel5.setText("Please select exactly 12 characters. You pressed " + selectedIndex + " times");
+            jLabel5.setText("Please select exactly 12 characters. You selected " + selectedIndex + " characters.");
             jLabel5.setVisible(true);
 
         }
@@ -158,7 +168,7 @@ public class ChossingForm extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, java.awt.BorderLayout.PAGE_END);
 
-        checkPanel.setLayout(new java.awt.GridLayout(37, 1));
+        checkPanel.setLayout(new javax.swing.BoxLayout(checkPanel, javax.swing.BoxLayout.PAGE_AXIS));
         getContentPane().add(checkPanel, java.awt.BorderLayout.CENTER);
 
         pack();

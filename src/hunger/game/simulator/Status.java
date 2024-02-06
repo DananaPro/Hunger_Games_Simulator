@@ -5,48 +5,67 @@ import javax.swing.ImageIcon;
 public class Status extends javax.swing.JFrame {
 
     private Participant[] PPcharacters; // Picked participants
+    private GameForm gf;
 
-    public Status(Participant[] participants) {
+    public Status(Participant[] participants, GameForm gf) {
         this.PPcharacters = participants;
+        this.gf = gf;
+
         initComponents();
+
         ImageIcon l = new ImageIcon("logo.png");
         jLabel25.setIcon(l);
+
+    }
+
+    public void updateText() {
+        jLabel13.setIcon(PPcharacters[0].getPic());
         jLabel1.setText(PPcharacters[0].getName());
         jLabel28.setText(isDead(0));
 
+        jLabel2.setIcon(PPcharacters[1].getPic());
         jLabel14.setText(PPcharacters[1].getName());
         jLabel29.setText(isDead(1));
 
+        jLabel15.setIcon(PPcharacters[2].getPic());
         jLabel3.setText(PPcharacters[2].getName());
         jLabel30.setText(isDead(2));
 
+        jLabel16.setIcon(PPcharacters[3].getPic());
         jLabel4.setText(PPcharacters[3].getName());
         jLabel31.setText(isDead(3));
 
+        jLabel20.setIcon(PPcharacters[4].getPic());
         jLabel8.setText(PPcharacters[4].getName());
         jLabel35.setText(isDead(4));
 
+        jLabel19.setIcon(PPcharacters[5].getPic());
         jLabel6.setText(PPcharacters[5].getName());
         jLabel33.setText(isDead(5));
 
+        jLabel17.setIcon(PPcharacters[6].getPic());
         jLabel7.setText(PPcharacters[6].getName());
         jLabel34.setText(isDead(6));
 
+        jLabel18.setIcon(PPcharacters[7].getPic());
         jLabel5.setText(PPcharacters[7].getName());
         jLabel32.setText(isDead(7));
 
+        jLabel24.setIcon(PPcharacters[8].getPic());
         jLabel12.setText(PPcharacters[8].getName());
         jLabel36.setText(isDead(8));
 
+        jLabel11.setIcon(PPcharacters[9].getPic());
         jLabel22.setText(PPcharacters[9].getName());
         jLabel37.setText(isDead(9));
 
+        jLabel23.setIcon(PPcharacters[10].getPic());
         jLabel10.setText(PPcharacters[10].getName());
         jLabel38.setText(isDead(10));
 
+        jLabel21.setIcon(PPcharacters[11].getPic());
         jLabel9.setText(PPcharacters[11].getName());
         jLabel39.setText(isDead(11));
-
     }
 
     private String isDead(int i) {
@@ -163,7 +182,6 @@ public class Status extends javax.swing.JFrame {
 
         jPanel5.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
 
-        jLabel13.setText("pic");
         jLabel13.setToolTipText("");
         jPanel5.add(jLabel13);
 
@@ -178,8 +196,6 @@ public class Status extends javax.swing.JFrame {
         jPanel1.add(jPanel5);
 
         jPanel2.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
-
-        jLabel2.setText("pic");
         jPanel2.add(jLabel2);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -193,8 +209,6 @@ public class Status extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
 
         jPanel12.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
-
-        jLabel15.setText("pic");
         jPanel12.add(jLabel15);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -208,8 +222,6 @@ public class Status extends javax.swing.JFrame {
         jPanel1.add(jPanel12);
 
         jPanel13.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
-
-        jLabel16.setText("pic");
         jPanel13.add(jLabel16);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -223,8 +235,6 @@ public class Status extends javax.swing.JFrame {
         jPanel1.add(jPanel13);
 
         jPanel3.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
-
-        jLabel20.setText("pic");
         jPanel3.add(jLabel20);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -238,8 +248,6 @@ public class Status extends javax.swing.JFrame {
         jPanel1.add(jPanel3);
 
         jPanel8.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
-
-        jLabel19.setText("pic");
         jPanel8.add(jLabel19);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -253,8 +261,6 @@ public class Status extends javax.swing.JFrame {
         jPanel1.add(jPanel8);
 
         jPanel10.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
-
-        jLabel17.setText("pic");
         jPanel10.add(jLabel17);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -268,8 +274,6 @@ public class Status extends javax.swing.JFrame {
         jPanel1.add(jPanel10);
 
         jPanel11.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
-
-        jLabel18.setText("pic");
         jPanel11.add(jLabel18);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -283,8 +287,6 @@ public class Status extends javax.swing.JFrame {
         jPanel1.add(jPanel11);
 
         jPanel4.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
-
-        jLabel24.setText("pic");
         jPanel4.add(jLabel24);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -298,8 +300,6 @@ public class Status extends javax.swing.JFrame {
         jPanel1.add(jPanel4);
 
         jPanel6.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
-
-        jLabel11.setText("pic");
         jPanel6.add(jLabel11);
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -313,8 +313,6 @@ public class Status extends javax.swing.JFrame {
         jPanel1.add(jPanel6);
 
         jPanel9.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
-
-        jLabel23.setText("pic");
         jPanel9.add(jLabel23);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -328,8 +326,6 @@ public class Status extends javax.swing.JFrame {
         jPanel1.add(jPanel9);
 
         jPanel7.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
-
-        jLabel21.setText("pic");
         jPanel7.add(jLabel21);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -344,11 +340,10 @@ public class Status extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        pack();
+        setBounds(0, 0, 963, 1171);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        GameForm gf = new GameForm(PPcharacters);
         gf.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed

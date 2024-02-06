@@ -1,13 +1,14 @@
-
 package hunger.game.simulator;
 
 import javax.swing.ImageIcon;
 
 public class Participant {
+
     private String name;
     private ImageIcon pic;
+    private boolean status = true; // true=alive, false=dead
 
-    public Participant(String name, ImageIcon pic) {
+    public Participant(String name,ImageIcon pic) {
         this.name = name;
         this.pic = pic;
     }
@@ -27,5 +28,13 @@ public class Participant {
     public void setPic(ImageIcon pic) {
         this.pic = pic;
     }
-    
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
 }
