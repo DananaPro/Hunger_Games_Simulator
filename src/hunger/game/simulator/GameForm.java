@@ -8,7 +8,6 @@ public class GameForm extends javax.swing.JFrame {
 
     public int day;
     public int currentGuy;
-    int Alive;
     private Participant[] PPcharacters; // Picked participants
 
     private String[] eventsSingle;
@@ -89,40 +88,40 @@ public class GameForm extends javax.swing.JFrame {
     private String SingleEventHandler() {
         int eventnum = eventsSingle.length;
 
-        Alive = 0;
+//        Alive = 0;
         int currentEvent = rndevent(eventnum);
 
         boolean isDying = eventsSDeath[currentEvent];
         currentGuy = rndguy();
         if (isDying) {
             PPcharacters[currentGuy].setStatus(false);
-            for (int i = 0; i < PPcharacters.length; i++) {
-                if (PPcharacters[i].isStatus()) {
-                    Alive++;
-                }
-
-            }
-            if (Alive == 1) {
-                currentGuy = rndguy();
-                jButton1.setVisible(true);
-
-                jButton2.setVisible(false);
-                gameEnd = true;
-                return PPcharacters[currentGuy].getName() + " won the hunger games";
-            }
+//            for (int i = 0; i < PPcharacters.length; i++) {
+//                if (PPcharacters[i].isStatus()) {
+//                    Alive++;
+//                }
+//
+//            }
+//            if (Alive == 1) {
+//                currentGuy = rndguy();
+//                jButton1.setVisible(true);
+//
+//                jButton2.setVisible(false);
+//                gameEnd = true;
+//                return PPcharacters[currentGuy].getName() + " won the hunger games";
+//            }
         }
-        if (Alive != 1) {
+//        if (Alive != 1) {
             return PPcharacters[currentGuy].getName() + " " + eventsSingle[currentEvent];
 
-        }
+//        }
 
-        return null;
+//        return null;
     }
 
     private String Multiplayer() {
         int eventnum = eventsMultiplayer.length;
 
-        Alive = 0;
+//        Alive = 0;
         int currentEvent = rndevent(eventnum);
 
         boolean isDying = eventsMDeath[currentEvent];
@@ -134,31 +133,31 @@ public class GameForm extends javax.swing.JFrame {
 
         if (isDying) {
             PPcharacters[currentsSecondGuy].setStatus(false);
-            for (int i = 0; i < PPcharacters.length; i++) {
-                if (PPcharacters[i].isStatus()) {
-                    Alive++;
-                }
-
-            }
-            if (Alive == 1) {
-                currentGuy = rndguy();
-                jButton1.setVisible(true);
-
-                jButton2.setVisible(false);
-                gameEnd = true;
-                return PPcharacters[currentGuy].getName() + " won the hunger games";
-            }
+//            for (int i = 0; i < PPcharacters.length; i++) {
+//                if (PPcharacters[i].isStatus()) {
+//                    Alive++;
+//                }
+//
+//            }
+//            if (Alive == 1) {
+//                currentGuy = rndguy();
+//                jButton1.setVisible(true);
+//
+//                jButton2.setVisible(false);
+//                gameEnd = true;
+//                return PPcharacters[currentGuy].getName() + " won the hunger games";
+//            }
         }
-        if (Alive != 1) {
+//        if (Alive != 1) {
             return PPcharacters[currentGuy].getName() + " " + eventsMultiplayer[currentEvent] + " " + PPcharacters[currentsSecondGuy].getName();
 
-        }
-        return null;
+//        }
+//        return null;
     }
 
     private String Multiplayer1() {
         int eventnum = eventsM1ultiplayer.length;
-        Alive = 0;
+//        Alive = 0;
         int currentEvent = rndevent(eventnum);
 
         boolean isDying = eventsM1Death[currentEvent];
@@ -169,26 +168,26 @@ public class GameForm extends javax.swing.JFrame {
         }
         if (isDying) {
             PPcharacters[currentsSecondGuy].setStatus(false);
-            for (int i = 0; i < PPcharacters.length; i++) {
-                if (PPcharacters[i].isStatus()) {
-                    Alive++;
-                }
-
-            }
-            if (Alive == 1) {
-                currentGuy = rndguy();
-                jButton1.setVisible(true);
-
-                jButton2.setVisible(false);
-                gameEnd = true;
-                return PPcharacters[currentGuy].getName() + " won the hunger games!";
-            }
+//            for (int i = 0; i < PPcharacters.length; i++) {
+//                if (PPcharacters[i].isStatus()) {
+//                    Alive++
+//                }
+//
+//            }
+//            if (Alive == 1) {
+//                currentGuy = rndguy();
+//                jButton1.setVisible(true);
+//
+//                jButton2.setVisible(false);
+//                gameEnd = true;
+//                return PPcharacters[currentGuy].getName() + " won the hunger games!";
+//            }
         }
-        if (Alive != 1) {
+//        if (Alive != 1) {
             return PPcharacters[currentGuy].getName() + " " + eventsM1ultiplayer[currentEvent] + PPcharacters[currentsSecondGuy].getName() + eventsM2ultiplayer[currentEvent];
 
-        }
-        return null;
+//        }
+//        return null;
     }
 
     private int rndevent(int eventnum) {
@@ -211,15 +210,36 @@ public class GameForm extends javax.swing.JFrame {
         jLabel4.setText("day " + day);
         JLabel[] textLabels = {jLabel5, jLabel7, jLabel9, jLabel11, jLabel13, jLabel15, jLabel17, jLabel19};
         JLabel[] imageLabels = {jLabel2, jLabel6, jLabel8, jLabel10, jLabel12, jLabel14, jLabel16, jLabel18};
+        for (int i = 0; i < textLabels.length; i++) { // Go over all the lines of the events
 
-        for (int i = 0; i < textLabels.length; i++) {
-            if (!gameEnd) {
-                currentGuy = rndguy(); // יצירת משתנה חדש בכל פעם
-                while (!PPcharacters[currentGuy].isStatus()) {
-                    currentGuy = rndguy(); // יצירת משתנה חדש כל פעם שהשחקן שקיבלנו אינו חי
+            // Just before randomizing the event for the current line, check if
+            
+            int Alive = 0;
+            for (int j = 0; j < PPcharacters.length; j++) {
+                if (PPcharacters[j].isStatus()) {
+                    Alive++;
                 }
+            }
+            if (Alive == 1) {
+                currentGuy = rndguy();
+                jButton1.setVisible(true);
+
+                jButton2.setVisible(false);
+                gameEnd = true;
+                textLabels[i].setText(PPcharacters[currentGuy].getName() + " won the hunger games");
+            }
+            if (!gameEnd) {
+//                currentGuy = rndguy(); // יצירת משתנה חדש בכל פעם
+//                while (!PPcharacters[currentGuy].isStatus()) {
+//                    currentGuy = rndguy(); // יצירת משתנה חדש כל פעם שהשחקן שקיבלנו אינו חי
+//                }
                 textLabels[i].setText(handleEvent());
                 imageLabels[i].setIcon(PPcharacters[currentGuy].getPic());
+//                for (int j = 0; j < PPcharacters.length; j++) {
+//                    if (PPcharacters[j].isStatus()) {
+//                        System.out.println(PPcharacters[j].getName());
+//                    }
+//                }
             } else {
                 // הסתר את כל התמונות
                 imageLabels[i].setIcon(null);
