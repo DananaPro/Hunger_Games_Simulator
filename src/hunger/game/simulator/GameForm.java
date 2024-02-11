@@ -56,7 +56,7 @@ public class GameForm extends javax.swing.JFrame {
         eventsMDeath = new boolean[]{true, true};
 
         setText();
-        st = new Status(PPcharacters, this);
+        st = new Status(PPcharacters, this,day);
 
     }
 
@@ -111,10 +111,9 @@ public class GameForm extends javax.swing.JFrame {
 //            }
         }
 //        if (Alive != 1) {
-            return PPcharacters[currentGuy].getName() + " " + eventsSingle[currentEvent];
+        return PPcharacters[currentGuy].getName() + " " + eventsSingle[currentEvent];
 
 //        }
-
 //        return null;
     }
 
@@ -149,7 +148,7 @@ public class GameForm extends javax.swing.JFrame {
 //            }
         }
 //        if (Alive != 1) {
-            return PPcharacters[currentGuy].getName() + " " + eventsMultiplayer[currentEvent] + " " + PPcharacters[currentsSecondGuy].getName();
+        return PPcharacters[currentGuy].getName() + " " + eventsMultiplayer[currentEvent] + " " + PPcharacters[currentsSecondGuy].getName();
 
 //        }
 //        return null;
@@ -184,7 +183,7 @@ public class GameForm extends javax.swing.JFrame {
 //            }
         }
 //        if (Alive != 1) {
-            return PPcharacters[currentGuy].getName() + " " + eventsM1ultiplayer[currentEvent] + PPcharacters[currentsSecondGuy].getName() + eventsM2ultiplayer[currentEvent];
+        return PPcharacters[currentGuy].getName() + " " + eventsM1ultiplayer[currentEvent] + PPcharacters[currentsSecondGuy].getName() + eventsM2ultiplayer[currentEvent];
 
 //        }
 //        return null;
@@ -212,53 +211,58 @@ public class GameForm extends javax.swing.JFrame {
         JLabel[] imageLabels = {jLabel2, jLabel6, jLabel8, jLabel10, jLabel12, jLabel14, jLabel16, jLabel18};
         for (int i = 0; i < textLabels.length; i++) { // Go over all the lines of the events
 
-            // Just before randomizing the event for the current line, check if
-            
-            int Alive = 0;
-            for (int j = 0; j < PPcharacters.length; j++) {
-                if (PPcharacters[j].isStatus()) {
-                    Alive++;
-                }
-            }
-            if (Alive == 1) {
-                currentGuy = rndguy();
-                jButton1.setVisible(true);
-
-                jButton2.setVisible(false);
-                gameEnd = true;
-                textLabels[i].setText(PPcharacters[currentGuy].getName() + " won the hunger games");
-            }
-            if (!gameEnd) {
-//                currentGuy = rndguy(); // יצירת משתנה חדש בכל פעם
-//                while (!PPcharacters[currentGuy].isStatus()) {
-//                    currentGuy = rndguy(); // יצירת משתנה חדש כל פעם שהשחקן שקיבלנו אינו חי
-//                }
-                textLabels[i].setText(handleEvent());
-                imageLabels[i].setIcon(PPcharacters[currentGuy].getPic());
-//                for (int j = 0; j < PPcharacters.length; j++) {
-//                    if (PPcharacters[j].isStatus()) {
-//                        System.out.println(PPcharacters[j].getName());
-//                    }
-//                }
-            } else {
+            if (gameEnd) {
                 // הסתר את כל התמונות
                 imageLabels[i].setIcon(null);
 
                 // הסתר את כל הטקסטים
                 textLabels[i].setText("");
+            } else {
+                // Just before randomizing the event for the current line, check if
+                int Alive = 0;
+                for (int j = 0; j < PPcharacters.length; j++) {
+                    if (PPcharacters[j].isStatus()) {
+                        Alive++;
+                    }
+                }
+                if (Alive == 1) {
+                    currentGuy = rndguy();
+                    jButton1.setVisible(true);
+
+                    jButton2.setVisible(false);
+                    gameEnd = true;
+                    imageLabels[i].setIcon(PPcharacters[currentGuy].getPic());
+
+                    textLabels[i].setText(PPcharacters[currentGuy].getName() + " won the hunger games");
+                } else {
+//                    if (!gameEnd) {
+//                currentGuy = rndguy(); // יצירת משתנה חדש בכל פעם
+//                while (!PPcharacters[currentGuy].isStatus()) {
+//                    currentGuy = rndguy(); // יצירת משתנה חדש כל פעם שהשחקן שקיבלנו אינו חי
+//                }
+                    textLabels[i].setText(handleEvent());
+                    imageLabels[i].setIcon(PPcharacters[currentGuy].getPic());
+//                for (int j = 0; j < PPcharacters.length; j++) {
+//                    if (PPcharacters[j].isStatus()) {
+//                        System.out.println(PPcharacters[j].getName());
+//                    }
+//                }
+//                    }
+                }
+
             }
+
         }
-
     }
-
     // Building a new list of all alive characters from all the participants
     // Identical to:
     // Go over all the participants and build a new small list which contains only the alive ones
-//    private void BuildAliveCharacters() {
-//        for (int i = 0; i < 12; i++) {
-//            PPcharacters[i] = new Participant(AliveCharacters[i].getName());
-//        }
-//    }
+    //    private void BuildAliveCharacters() {
+    //        for (int i = 0; i < 12; i++) {
+    //            PPcharacters[i] = new Participant(AliveCharacters[i].getName());
+    //        }
+    //    }
+
     private boolean Percent(int Percent) {
         int SPercent = rnd.nextInt(100);
         return SPercent < Percent;
@@ -266,8 +270,10 @@ public class GameForm extends javax.swing.JFrame {
     }
 
     private void status() {
+
         st.updateText();
         st.setVisible(true);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -326,7 +332,7 @@ public class GameForm extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel3);
@@ -482,7 +488,7 @@ public class GameForm extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         status();
         setVisible(false);
-
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

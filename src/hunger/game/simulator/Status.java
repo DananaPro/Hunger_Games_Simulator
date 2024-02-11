@@ -6,10 +6,12 @@ public class Status extends javax.swing.JFrame {
 
     private Participant[] PPcharacters; // Picked participants
     private GameForm gf;
+    private int day;
 
-    public Status(Participant[] participants, GameForm gf) {
+    public Status(Participant[] participants, GameForm gf, int day) {
         this.PPcharacters = participants;
         this.gf = gf;
+        this.day = day;
 
         initComponents();
 
@@ -19,6 +21,8 @@ public class Status extends javax.swing.JFrame {
     }
 
     public void updateText() {
+
+        jLabel27.setText("day " + day);
         jLabel13.setIcon(PPcharacters[0].getPic());
         jLabel1.setText(PPcharacters[0].getName());
         jLabel28.setText(isDead(0));
@@ -146,7 +150,7 @@ public class Status extends javax.swing.JFrame {
         jLabel26.setText("The Hunger Games ");
         jPanel15.add(jLabel26);
 
-        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel27.setText("day");
         jPanel15.add(jLabel27);
 
