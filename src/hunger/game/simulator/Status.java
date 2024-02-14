@@ -1,6 +1,8 @@
 package hunger.game.simulator;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 public class Status extends javax.swing.JFrame {
 
@@ -14,6 +16,7 @@ public class Status extends javax.swing.JFrame {
         this.day = day;
 
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         ImageIcon l = new ImageIcon("logo.png");
         jLabel25.setIcon(l);
@@ -78,6 +81,14 @@ public class Status extends javax.swing.JFrame {
         } else {
             return "Deceased";
         }
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
     }
 
     @SuppressWarnings("unchecked")

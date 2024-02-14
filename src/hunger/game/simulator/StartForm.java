@@ -56,23 +56,23 @@ public class StartForm extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Game Instructions:\n\nIn the game you can choose 12 people who will participate in the hunger game from a list of 48 participants.\nEvery day there will be events that happened that day.\nAfter each day in the game you will be given two options:\n1. Show the status of each player including their kill count and whether they are dead.\n2. Continue to the next day. Then again events will appear and the same two options.\nAfter one player remains, the player will be considered the winner\n");
+        jTextArea1.setText("Game Instructions:\n\nIn the game you can choose 12 people from a list of 48 participants who will participate in the hunger games.\nEvery day events will take place.\nAfter each day in the game you will be given two options:\n1. Show the status of each player including whether they are alive or deacesed.\n2. Continue to the next day.\nevery day you will be shown the events of that day and you will be able to choose from the same options again.\nAfter one player remains, the player will be considered the winner.\n");
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        setBounds(0, 0, 740, 358);
+        setBounds(0, 0, 916, 413);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
