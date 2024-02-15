@@ -259,11 +259,12 @@ public class GameForm extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("LOGO");
 
@@ -299,7 +300,7 @@ public class GameForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,13 +386,13 @@ public class GameForm extends javax.swing.JFrame {
 
         jPanel6.setLayout(new java.awt.GridLayout(1, 0, 20, 20));
 
-        jButton2.setText("Progress");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setText("Status");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton2);
+        jPanel6.add(jButton3);
 
         jButton1.setText("Exit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -401,13 +402,13 @@ public class GameForm extends javax.swing.JFrame {
         });
         jPanel6.add(jButton1);
 
-        jButton3.setText("Status");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Progress");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton3);
+        jPanel6.add(jButton2);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
